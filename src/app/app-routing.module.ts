@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'fotos',
     loadChildren: () => import('./pages/fotos/fotos.module').then( m => m.FotosPageModule)
+  },  {
+    path: 'geoleaflet',
+    loadChildren: () => import('./pages/geoleaflet/geoleaflet.module').then( m => m.GeoleafletPageModule)
   }
+
 ];
 
 @NgModule({
