@@ -9,25 +9,25 @@ import * as L from 'leaflet';
 export class GeoleafletPage implements OnInit {
   private map;
   
-  constructor() { }
+  constructor() { 
+    // (Joseba) Solucionar problema de iconos en Leaflet
+    L.Marker.prototype.options.icon = L.icon({
+      iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+      iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+      shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+    });
+  }
 
   ngOnInit() {
   }
   
-  // (Joseba) No se renderiza bien en ngOnInit
+  // (Joseba) El mapa no se renderiza bien en ngOnInit
   // Ver: https://stackoverflow.com/questions/59790512/leaflet-map-rendering-problems-in-ionic-angular
   ionViewDidEnter(){
-    // this.map = L.map("map").setView([46.879966, -121.726909], 7);
-
-    // L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    //   attribution:
-    //     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    // }).addTo(this.map);
-
     const posMadrid = L.latLng(40.4165, -3.70256);
     this.map = L.map('map', {
       center: posMadrid,
-      zoom: 12
+      zoom: 10
     });
     
     L.marker(posMadrid).addTo(this.map)
